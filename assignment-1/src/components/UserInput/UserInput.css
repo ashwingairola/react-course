@@ -1,0 +1,10 @@
+.UserInput {
+	padding: 8px;
+	border: 1px solid #663399;
+	border-radius: 8px;
+}
+
+.UserInput:focus {
+	outline: none;
+	box-shadow: 0 0 4px 2px rgba(102, 51, 153, 0.4);
+}
