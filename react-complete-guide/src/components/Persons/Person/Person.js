@@ -7,7 +7,9 @@ class Person extends React.Component {
 		console.log(
 			`[Person.js] shouldComponentUpdate ${this.props.name !== nextProps.name}`
 		);
-		return this.props.name !== nextProps.name;
+		return (
+			this.props.name !== nextProps.name || this.props.age !== nextProps.age
+		);
 	}
 
 	render() {

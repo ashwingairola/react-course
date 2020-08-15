@@ -2,7 +2,7 @@ import React from 'react';
 
 import Person from './Person/Person';
 
-class Persons extends React.Component {
+class Persons extends React.PureComponent {
 	state = {};
 
 	static getDerivedStateFromProps(props, state) {
@@ -14,10 +14,10 @@ class Persons extends React.Component {
 	// 	console.log('[Persons.js] componentWillReceiveProps');
 	// }
 
-	shouldComponentUpdate(nextProps, nextState) {
-		console.log('[Persons.js] shouldComponentUpdate');
-		return nextProps.persons !== this.props.persons;
-	}
+	// shouldComponentUpdate(nextProps, nextState) {
+	// 	console.log('[Persons.js] shouldComponentUpdate');
+	// 	return nextProps.persons !== this.props.persons;
+	// }
 
 	getSnapshotBeforeUpdate(prevProps, prevState) {
 		console.log('[Persons.js] getSnapshotBeforeUpdate');
