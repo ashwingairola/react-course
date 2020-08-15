@@ -3,6 +3,13 @@ import React from 'react';
 import classes from './Person.css';
 
 class Person extends React.Component {
+	shouldComponentUpdate(nextProps) {
+		console.log(
+			`[Person.js] shouldComponentUpdate ${this.props.name !== nextProps.name}`
+		);
+		return this.props.name !== nextProps.name;
+	}
+
 	render() {
 		console.log('[Person.js] render');
 
