@@ -18,7 +18,8 @@ class App extends Component {
 			],
 			otherState: 'some other value',
 			showPersons: false,
-			showCockpit: true
+			showCockpit: true,
+			changeCounter: 0
 		};
 	}
 
@@ -56,7 +57,25 @@ class App extends Component {
 			const persons = [...this.state.persons];
 
 			persons[personIndex] = person;
-			this.setState({ persons });
+
+			/*
+                The following code won't guarantee that the value of
+                changeCounter truly depends upon the immediately previous state value,
+                because setState updates the state asynchronously.
+            */
+
+			// this.setState({ persons, changeCounter: this.state.changeCounter + 1 });
+
+			/*
+                When updating the state needs to rely on the previous state,
+                invoke setState with a callback instead of an object.
+            */
+			this.setState((prevState, props) => {
+				return {
+					persons,
+					changeCounter: prevState.changeCounter + 1
+				};
+			});
 		}
 	};
 
