@@ -14,20 +14,21 @@ class Person extends React.Component {
 		this.inputElementRef.current.focus();
 	}
 
-	shouldComponentUpdate(nextProps) {
-		console.log(
-			`[Person.js] shouldComponentUpdate ${this.props.name !== nextProps.name}`
-		);
-		return (
-			this.props.name !== nextProps.name || this.props.age !== nextProps.age
-		);
-	}
+	// shouldComponentUpdate(nextProps) {
+	// 	console.log(
+	// 		`[Person.js] shouldComponentUpdate ${this.props.name !== nextProps.name}`
+	// 	);
+	// 	return (
+	// 		this.props.name !== nextProps.name || this.props.age !== nextProps.age
+	// 	);
+	// }
 
 	render() {
 		console.log('[Person.js] render');
 
 		return (
 			<React.Fragment>
+				{this.props.isAuth ? <p>Authenticated!</p> : <p>Please log in</p>}
 				<p onClick={this.props.click}>
 					I'm {this.props.name} and I am {this.props.age} years old!
 				</p>
