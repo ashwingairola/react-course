@@ -1,7 +1,6 @@
 import React from 'react';
 
 import classes from './Person.css';
-import Aux from '../../../hoc/Auxiliary';
 
 class Person extends React.Component {
 	shouldComponentUpdate(nextProps) {
