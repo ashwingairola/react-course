@@ -5,6 +5,15 @@ import classes from './Person.css';
 import withClass from '../../../hoc/withClass';
 
 class Person extends React.Component {
+	constructor(props) {
+		super(props);
+		this.inputElementRef = React.createRef();
+	}
+
+	componentDidMount() {
+		this.inputElementRef.current.focus();
+	}
+
 	shouldComponentUpdate(nextProps) {
 		console.log(
 			`[Person.js] shouldComponentUpdate ${this.props.name !== nextProps.name}`
@@ -24,6 +33,10 @@ class Person extends React.Component {
 				</p>
 				<p>{this.props.children}</p>
 				<input
+					// ref={(el) => {
+					// 	this.inputElement = el;
+					// }}
+					ref={this.inputElementRef}
 					type="text"
 					onChange={this.props.changed}
 					defaultValue={this.props.name}
