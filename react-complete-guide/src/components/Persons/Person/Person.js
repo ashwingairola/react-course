@@ -1,6 +1,7 @@
 import React from 'react';
 
 import classes from './Person.css';
+import withClass from '../../../hoc/withClass';
 
 class Person extends React.Component {
 	shouldComponentUpdate(nextProps) {
@@ -16,7 +17,7 @@ class Person extends React.Component {
 		console.log('[Person.js] render');
 
 		return (
-			<React.Fragment className={classes.Person}>
+			<React.Fragment>
 				<p onClick={this.props.click}>
 					I'm {this.props.name} and I am {this.props.age} years old!
 				</p>
@@ -31,4 +32,4 @@ class Person extends React.Component {
 	}
 }
 
-export default Person;
+export default withClass(Person, classes.Person);
