@@ -1,6 +1,7 @@
 import React from 'react';
 
 import classes from './Person.css';
+import Aux from '../../../hoc/Auxiliary';
 
 class Person extends React.Component {
 	shouldComponentUpdate(nextProps) {
@@ -16,7 +17,7 @@ class Person extends React.Component {
 		console.log('[Person.js] render');
 
 		return (
-			<div className={classes.Person}>
+			<Aux className={classes.Person}>
 				<p onClick={this.props.click}>
 					I'm {this.props.name} and I am {this.props.age} years old!
 				</p>
@@ -26,7 +27,7 @@ class Person extends React.Component {
 					onChange={this.props.changed}
 					defaultValue={this.props.name}
 				/>
-			</div>
+			</Aux>
 		);
 	}
 }
