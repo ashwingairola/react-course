@@ -47,7 +47,6 @@ class Persons extends React.PureComponent {
 				key={i}
 				click={() => this.props.clicked(i)}
 				changed={(event) => this.props.changed(event, person.id)}
-				isAuth={this.props.isAuthenticated}
 			/>
 		));
 	}
