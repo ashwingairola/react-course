@@ -9,7 +9,9 @@ import './Blog.css';
 class Blog extends Component {
 	state = { posts: [], selectedPostId: null };
 
-	postSelectedHandler = (id) => {};
+	postSelectedHandler = (id) => {
+		this.setState({ selectedPostId: id });
+	};
 
 	componentDidMount() {
 		axios
