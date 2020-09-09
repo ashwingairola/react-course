@@ -13,6 +13,10 @@ class Blog extends Component {
 		this.setState({ selectedPostId: id });
 	};
 
+	postDeselectedHandler = () => {
+		this.setState({ selectedPostId: null });
+	};
+
 	componentDidMount() {
 		axios
 			.get('https://jsonplaceholder.typicode.com/posts')
@@ -40,7 +44,10 @@ class Blog extends Component {
 			<div>
 				<section className="Posts">{posts}</section>
 				<section>
-					<FullPost id={this.state.selectedPostId} />
+					<FullPost
+						id={this.state.selectedPostId}
+						postDeleted={this.postDeselectedHandler}
+					/>
 				</section>
 				<section>
 					<NewPost />
