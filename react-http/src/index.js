@@ -5,7 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import axios from 'axios';
 
-axios.interceptors.request.use(
+const requestInterceptor = axios.interceptors.request.use(
 	(request) => {
 		console.log(request);
 		// Edit request config
@@ -17,7 +17,7 @@ axios.interceptors.request.use(
 	}
 );
 
-axios.interceptors.response.use(
+const responseInterceptor = axios.interceptors.response.use(
 	(response) => {
 		console.log(response);
 		return response;
@@ -27,6 +27,9 @@ axios.interceptors.response.use(
 		return Promise.reject(error);
 	}
 );
+
+axios.interceptors.request.eject(requestInterceptor);
+axios.interceptors.response.eject(responseInterceptor);
 
 ReactDOM.render(
 	<React.StrictMode>
