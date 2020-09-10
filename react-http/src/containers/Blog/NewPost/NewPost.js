@@ -17,12 +17,14 @@ class NewPost extends Component {
 			author: this.state.author,
 		};
 
-		axios
-			.post('/posts', post)
-			.then((response) => {
-				console.log(response);
-			});
+		axios.post('/posts', post).then((response) => {
+			console.log(response);
+		});
 	};
+
+	componentDidMount() {
+		console.log(this.props);
+	}
 
 	render() {
 		return (
