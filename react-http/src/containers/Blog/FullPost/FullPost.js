@@ -6,35 +6,30 @@ import './FullPost.css';
 class FullPost extends Component {
 	state = {
 		loadedPost: null,
+		postId: 0,
 	};
 
 	deletePostHandler = () => {
-		axios
-			.delete(
-				`/posts/${this.props.id}`
-			)
-			.then((response) => {
-				console.log(response);
-				this.props.postDeleted();
-				this.setState({ loadedPost: null });
-			});
+		axios.delete(`/posts/${this.props.id}`).then((response) => {
+			console.log(response);
+			this.setState({ loadedPost: null });
+		});
 	};
 
-	componentDidUpdate() {
-		if (this.props.id) {
+	componentDidMount() {
+		const postId = this.props.match.params.postId;
+
+		this.setState({ postId });
+
+		if (postId) {
 			if (
 				!this.state.loadedPost ||
-				(this.state.loadedPost &&
-					this.state.loadedPost.id !== this.props.id)
+				(this.state.loadedPost && this.state.loadedPost.id !== postId)
 			) {
-				axios
-					.get(
-						`/posts/${this.props.id}`
-					)
-					.then((response) => {
-						console.log(response);
-						this.setState({ loadedPost: response.data });
-					});
+				axios.get(`/posts/${postId}`).then((response) => {
+					console.log(response);
+					this.setState({ loadedPost: response.data });
+				});
 			}
 		}
 	}
@@ -42,7 +37,7 @@ class FullPost extends Component {
 	render() {
 		let post = <p style={{ textAlign: 'center' }}>Please select a Post!</p>;
 
-		if (this.props.id) {
+		if (this.state.postId && !this.state.loadedPost) {
 			post = <p style={{ textAlign: 'center' }}>Loading...</p>;
 		}
 
@@ -54,7 +49,9 @@ class FullPost extends Component {
 					<div className="Edit">
 						<button
 							className="Delete"
-							onClick={this.deletePostHandler}
+							onClick={() => {
+								this.deletePostHandler();
+							}}
 						>
 							Delete
 						</button>
