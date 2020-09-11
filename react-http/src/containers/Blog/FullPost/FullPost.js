@@ -26,10 +26,15 @@ class FullPost extends Component {
 				!this.state.loadedPost ||
 				(this.state.loadedPost && this.state.loadedPost.id !== postId)
 			) {
-				axios.get(`/posts/${postId}`).then((response) => {
-					console.log(response);
-					this.setState({ loadedPost: response.data });
-				});
+				axios
+					.get(`/posts/${postId}`)
+					.then((response) => {
+						console.log(response);
+						this.setState({ loadedPost: response.data });
+					})
+					.catch((err) => {
+						console.log(err);
+					});
 			}
 		}
 	}
