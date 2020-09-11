@@ -1,19 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import axios from '../../../axios';
 
 import './Posts.css';
 import Post from '../../../components/Post/Post';
 
 class Posts extends React.Component {
-	state = { posts: [] };
-
-	postSelectedHandler = (id) => {
-		this.setState({ selectedPostId: id });
-	};
-
-	postDeselectedHandler = () => {
-		this.setState({ selectedPostId: null });
-	};
+	state = { posts: [], error: false };
 
 	componentDidMount() {
 		console.log(this.props);
@@ -29,7 +22,7 @@ class Posts extends React.Component {
 				this.setState({ posts: updatedPosts });
 			})
 			.catch((error) => {
-				// console.log(error);
+				console.log(error);
 				this.setState({ error: true });
 			});
 	}
@@ -41,12 +34,9 @@ class Posts extends React.Component {
 
 		if (!this.state.error) {
 			posts = this.state.posts.map((post) => (
-				<Post
-					key={post.id}
-					title={post.title}
-					author={post.author}
-					clicked={() => this.postSelectedHandler(post.id)}
-				/>
+				<Link to={`/${post.id}`} key={post.id}>
+					<Post title={post.title} author={post.author} />
+				</Link>
 			));
 		}
 
