@@ -8,6 +8,11 @@ import Post from '../../../components/Post/Post';
 class Posts extends React.Component {
 	state = { posts: [], error: false };
 
+	postSelectedHandler = (postId) => {
+		this.props.history.push(`/${postId}`);
+		// this.props.history.push({ pathname: `/${postId}` });
+	};
+
 	componentDidMount() {
 		console.log(this.props);
 
@@ -34,9 +39,16 @@ class Posts extends React.Component {
 
 		if (!this.state.error) {
 			posts = this.state.posts.map((post) => (
-				<Link to={`/${post.id}`} key={post.id}>
-					<Post title={post.title} author={post.author} />
-				</Link>
+				// <Link to={`/${post.id}`} key={post.id}>
+				<Post
+					key={post.id}
+					title={post.title}
+					author={post.author}
+					clicked={() => {
+						this.postSelectedHandler(post.id);
+					}}
+				/>
+				// </Link>
 			));
 		}
 
