@@ -17,9 +17,15 @@ class FullPost extends Component {
 	};
 
 	componentDidMount() {
-		const postId = this.props.match.params.postId;
+		const postId = +this.props.match.params.postId;
 
-		this.setState({ postId });
+		if (postId) {
+			this.setState({ postId });
+		}
+	}
+
+	componentDidUpdate() {
+		const postId = +this.props.match.params.postId;
 
 		if (postId) {
 			if (
@@ -30,7 +36,7 @@ class FullPost extends Component {
 					.get(`/posts/${postId}`)
 					.then((response) => {
 						console.log(response);
-						this.setState({ loadedPost: response.data });
+						this.setState({ loadedPost: response.data, postId });
 					})
 					.catch((err) => {
 						console.log(err);
