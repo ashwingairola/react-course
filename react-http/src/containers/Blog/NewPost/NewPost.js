@@ -10,6 +10,7 @@ class NewPost extends Component {
 		content: '',
 		author: 'Max',
 		submitted: false,
+		auth: true, // Just a dummy field for proper routing.
 	};
 
 	postDataHandler = () => {
@@ -27,6 +28,11 @@ class NewPost extends Component {
 
 	componentDidMount() {
 		console.log(this.props);
+
+		// My preferred way of route-guarding. Here the guard logic is concentrated to the component itself.
+		if (!this.state.auth) {
+			this.props.history.replace('/posts');
+		}
 	}
 
 	render() {
