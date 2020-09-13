@@ -6,7 +6,7 @@ import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
 
 class Blog extends Component {
-    // One way of route-guarding.
+	// One way of route-guarding.
 	// state = {
 	// 	auth: true,
 	// };
@@ -47,13 +47,20 @@ class Blog extends Component {
 				</header>
 
 				<Switch>
-                    {/* One way of route-guarding. */}
+					{/* One way of route-guarding. */}
 					{/* {this.state.auth ? (
 						<Route path="/new-post" component={NewPost} />
 					) : null} */}
-                    <Route path="/new-post" component={NewPost} />
+
+					<Route path="/new-post" component={NewPost} />
 					<Route path="/posts" component={Posts} />
-					<Redirect from="/" to="/posts" />
+					<Redirect exact from="/" to="/posts" />
+
+					{/* Obsolete way to declare a 404 route. Won't work if a '/' route is also defined. */}
+					{/* <Route render={() => <p>Not found.</p>} /> */}
+
+					{/* The right way to declare a wildcard route. */}
+					<Route path="*" render={() => <p>Not found.</p>} />
 				</Switch>
 			</div>
 		);
