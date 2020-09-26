@@ -1,7 +1,8 @@
 import React from 'react';
 
 import axios from '../../axios-orders';
-import Aux from '../../hoc/Aux';
+import Aux from '../../hoc/Aux/Aux';
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import Modal from '../../components/UI/Modal/Modal';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Burger from '../../components/Burger/Burger';
@@ -160,4 +161,4 @@ class BurgerBuilder extends React.Component {
 	}
 }
 
-export default BurgerBuilder;
+export default withErrorHandler(BurgerBuilder, axios);
