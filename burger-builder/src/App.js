@@ -1,4 +1,5 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
 import Layout from './components/Layout/Layout';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
@@ -11,8 +12,11 @@ class App extends React.Component {
 				<Layout>
 					<h1>Buhguh App</h1>
 					<p>Have a buhguh, dumdum!</p>
-					<BurgerBuilder />
-                    <Checkout />
+
+					<Switch>
+						<Route path="/checkout" component={Checkout}></Route>
+						<Route path="/" component={BurgerBuilder}></Route>
+					</Switch>
 				</Layout>
 			</div>
 		);
