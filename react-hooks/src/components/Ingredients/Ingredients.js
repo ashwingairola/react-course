@@ -14,6 +14,12 @@ function Ingredients() {
 		]);
 	};
 
+	const removeIngredientHandler = (id) => {
+		setIngredients((prevIngredients) =>
+			prevIngredients.filter((ingredient) => ingredient.id !== id)
+		);
+	};
+
 	return (
 		<div className="App">
 			<IngredientForm onAddIngredient={addIngredientHandler} />
@@ -22,7 +28,7 @@ function Ingredients() {
 				<Search />
 				<IngredientList
 					ingredients={ingredients}
-					onRemoveItem={() => {}}
+					onRemoveItem={removeIngredientHandler}
 				/>
 			</section>
 		</div>
